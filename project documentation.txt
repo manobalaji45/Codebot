@@ -1,0 +1,192 @@
+Project Documentation: RedBus Booking System
+Overview
+The RedBus Booking System is a simple command-line application written in Python. 
+It simulates the process of booking a bus ticket. 
+The application reads bus data from a JSON file, 
+allows users to search and select buses, 
+collects passenger details, confirms the booking,
+and saves the booking details in JSON and text files.
+
+Project Components
+
+Reading Buses from File:
+
+read_buses_from_file(filename): Reads bus data from a JSON file.
+Error handling for file not found and JSON decoding errors.
+Searching Buses:
+
+def read_buses_from_file(filename):
+    try:
+        with open(filename, "r") as f:
+            buses = json.load(f)
+        return buses
+    except FileNotFoundError:
+        print(f"The file {filename} was not found.")
+        exit()
+    except json.JSONDecodeError:
+        print(f"Error decoding JSON from the file {filename}.")
+        exit()
+
+search_buses(source, destination, buses): 
+Filters available buses based on the source and destination (in this basic version, it returns all buses).
+Displaying Buses:
+
+def search_buses(source, destination, buses):
+    # For simplicity, we assume the source and destination filter is not implemented in this basic version
+    return buses
+
+
+display_buses(buses): Displays the list of available buses.
+Selecting a Bus:
+
+def display_buses(buses):
+    print("Available Buses:")
+    for bus in buses:
+        print(f"ID: {bus['id']}, Name: {bus['name']}, Departure: {bus['departure']}, 
+		Arrival: {bus['arrival']}, Seats Available: {bus['seats_available']}")
+
+
+
+select_bus(buses): Allows the user to select a bus by entering its ID. Validates the bus ID.
+Collecting Passenger Details:
+
+def select_bus(buses):
+    while True:
+        try:
+            bus_id = int(input("Enter the Bus ID to book: "))
+            selected_bus = next((bus for bus in buses if bus['id'] == bus_id), None)
+            if not selected_bus:
+                print("Invalid Bus ID. Please try again.")
+            else:
+                return selected_bus
+        except ValueError:
+            print("Invalid input. Please enter a valid Bus ID.")
+
+
+
+collect_passenger_details(): Collects the passenger's name, age, and gender.
+Booking a Ticket:
+
+def collect_passenger_details():
+    name = input("Enter passenger name: ")
+    age = int(input("Enter passenger age: "))
+    gender = input("Enter passenger gender: ")
+    return {"name": name, "age": age, "gender": gender}
+
+book_ticket(selected_bus, passenger_details): Creates a booking record with bus and passenger details.
+Saving Booking Details:
+
+def book_ticket(selected_bus, passenger_details):
+    booking_details = {
+        "bus_id": selected_bus['id'],
+        "bus_name": selected_bus['name'],
+        "departure": selected_bus['departure'],
+        "arrival": selected_bus['arrival'],
+        "passenger": passenger_details,
+        "status": "confirmed"
+    }
+    return booking_details
+
+save_booking(booking, filename): Saves booking details to a JSON file. Appends to the existing list of bookings.
+Saving Output to a Log File:
+
+def save_booking(booking, filename="D:/python/read_buses/booking_details.json"):
+    try:
+        with open(filename, "r") as f:
+            existing_bookings = json.load(f)
+            if not isinstance(existing_bookings, list):
+                print(f"Warning: {filename} did not contain a list. Resetting to an empty list.")
+                existing_bookings = []
+    except (FileNotFoundError, json.JSONDecodeError):
+        existing_bookings = []
+
+    print(f"Existing bookings before appending: {existing_bookings}")
+    existing_bookings.append(booking)
+    
+    with open(filename, "w") as f:
+        json.dump(existing_bookings, f, indent=2)
+    print(f"Booking details saved to {filename}")
+
+save_output_to_file(booking, filename): Saves the booking confirmation to a text file for logging purposes.
+
+def save_output_to_file(booking, filename="D:/python/read_buses/booking_output.txt"):
+    with open(filename, "a") as f:
+        f.write("Booking Confirmation:\n")
+        f.write(json.dumps(booking, indent=2) + "\n")
+    print(f"Booking output saved to {filename}")
+
+if __name__ == "__main__":
+    source = input("Enter source city: ")
+    destination = input("Enter destination city: ")
+
+    # Step 1: Read buses from file
+    buses_file_path = "D:/python/read_buses/buses.json"  # Ensure this path is correct relative to where the script is run
+    buses = read_buses_from_file(buses_file_path)
+    
+    # Step 2: Search for buses
+    buses = search_buses(source, destination, buses)
+    display_buses(buses)
+    
+    # Step 3: Select a bus
+    selected_bus = select_bus(buses)
+    
+    # Step 4: Enter passenger details
+    passenger_details = collect_passenger_details()
+    
+    # Step 5: Simulate booking
+    booking = book_ticket(selected_bus, passenger_details)
+    print(f"Booking confirmed: {json.dumps(booking, indent=2)}")
+    
+    # Step 6: Store booking details
+    save_booking(booking)
+    
+    # Step 7: Save output to a log file
+    save_output_to_file(booking)
+
+Sample buses.json File
+json
+Copy code
+[
+  {
+    "id": 1,
+    "name": "Bus A",
+    "departure": "10:00 AM",
+    "arrival": "02:00 PM",
+    "seats_available": 5
+  },
+  {
+    "id": 2,
+    "name": "Bus B",
+    "departure": "01:00 PM",
+    "arrival": "05:00 PM",
+    "seats_available": 3
+  }
+]
+
+Usage Instructions
+
+Ensure the JSON Files Exist:
+
+Create a JSON file buses.json with the bus details as shown above.
+Ensure the file path in the script matches the actual file location.
+
+Run the Script:
+
+Execute the Python script in an environment where the file paths are correctly set.
+
+Follow the Prompts:
+
+Enter the source and destination cities.
+Select a bus from the displayed list.
+Enter the passenger details.
+
+Check the Output:
+
+The booking confirmation will be displayed.
+The booking details will be saved to booking_details.json and appended to booking_output.txt.
+
+Project Summary
+This project demonstrates the use of Python for file handling, JSON manipulation, user input validation, 
+and basic error handling. It provides a foundation for building more complex systems and can be expanded 
+to include more features such as actual filtering of buses based on source and destination, handling multiple passengers,
+ and integrating with real-time data sources.
