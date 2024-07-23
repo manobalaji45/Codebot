@@ -1,0 +1,62 @@
+Booking Confirmation:
+{
+  "bus_id": 1,
+  "bus_name": "Bus A",
+  "departure": "10:00 AM",
+  "arrival": "02:00 PM",
+  "passenger": {
+    "name": "kabi",
+    "age": 23,
+    "gender": "male"
+  },
+  "status": "confirmed"
+}Booking Confirmation:
+{
+  "bus_id": 1,
+  "bus_name": "Bus A",
+  "departure": "10:00 AM",
+  "arrival": "02:00 PM",
+  "passenger": {
+    "name": "kananan",
+    "age": 25,
+    "gender": "male"
+  },
+  "status": "confirmed"
+}Booking Confirmation:
+{
+  "bus_id": 1,
+  "bus_name": "Bus A",
+  "departure": "10:00 AM",
+  "arrival": "02:00 PM",
+  "passenger": {
+    "name": "rohit",
+    "age": 26,
+    "gender": "male"
+  },
+  "status": "confirmed"
+}Booking Confirmation:
+{
+  "bus_id": 2,
+  "bus_name": "Bus B",
+  "departure": "01:00 PM",
+  "arrival": "05:00 PM",
+  "passenger": {
+    "name": "mano",
+    "age": 25,
+    "gender": "male"
+  },
+  "status": "confirmed"
+}
+Booking Confirmation:
+{
+  "bus_id": 1,
+  "bus_name": "Bus A",
+  "departure": "10:00 AM",
+  "arrival": "02:00 PM",
+  "passenger": {
+    "name": "vetri",
+    "age": 30,
+    "gender": "male"
+  },
+  "status": "confirmed"
+}
