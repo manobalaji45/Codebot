@@ -1,0 +1,229 @@
+try:
+    class calculator:
+    
+        def __init__ (self):
+            print( "calculator is ready to perform operation")
+            print("1.addition:")
+            print("2.Sub")
+            print("3.division")
+            print("4.modulus")
+            print("5.multiple")
+            #Z=int(input(" choose the choice :"))
+            #print(Z)
+            
+            
+        def add (self,a,b):
+            return a + b
+        def sub (self,a,b):
+            return a - b
+        def division (self,a,b):
+            return a / b
+        def modulus (self,a,b):
+            return a % b
+        def multiple (self,a,b):
+            return a * b
+    
+    calc = calculator()
+    Z=int(input(" choose the choice :"))
+    if(Z==1):
+        a=int(input("Enter the a value:"))
+        b=int(input("enter the b value:"))
+        print("Addition",calc.add(a,b))
+        #break
+    elif(Z==2):
+        a=int(input("Enter the a value:"))
+        b=int(input("enter the b value:"))
+        print("sub",calc.sub(a,b))
+        #break
+    elif(Z==3):
+        a=int(input("Enter the a value:"))
+        b=int(input("enter the b value:"))
+        print("division",calc.division(a,b))
+        #break
+    elif(Z==4):
+        a=int(input("Enter the a value:"))
+        b=int(input("enter the b value:"))
+        print("modulus",calc.modulus(a,b))
+       # break
+    elif(Z==5):
+        a=int(input("Enter the a value:"))
+        b=int(input("enter the b value:"))
+        print("multiple",calc.multiple(a,b))
+        #break
+    else:
+        print( "invalid input")
+
+
+except ZeroDivisionError as e:
+    print(e)
+    print ("you cant divide by zero..")
+except ValueError as e:
+    print(e)
+    print ("Enter numbers onlY..")
+except Exception as e:
+    print(e)
+    print("some error occured")
+else:
+    print("HI")
+finally:
+    print("this always executes")
+print("bye")
+========================================================================================================================================================================================================================
+   Documentation for Calculator Program
+Overview
+This Python program defines a basic calculator using a class,
+ allowing the user to perform various arithmetic operations 
+like addition, subtraction, division, modulus, and multiplication. 
+It also includes error handling for common issues 
+like division by zero and invalid inputs.
+
+Code Structure
+
+Class Definition:
+
+A class calculator is defined to encapsulate the functionality of the calculator.
+The class includes:
+Initialization: Displays a welcome message and a menu of operations.
+Methods: Five methods for different arithmetic operations (add, sub, division, modulus, multiple).
+User Interaction:
+
+The program asks the user to choose an operation by entering a number (1 to 5) corresponding to the operation in the menu.
+It then takes two inputs (a and b) and performs the selected operation using the appropriate method of the calculator class.
+Error Handling:
+
+The program uses a try-except block to handle potential errors:
+ZeroDivisionError: Handles cases where the user tries to divide by zero.
+ValueError: Handles cases where the user enters invalid (non-numeric) input.
+Exception: A general catch-all for any other errors.
+Finally Block:
+
+Ensures that a specific message ("this always executes") is displayed, regardless of whether an error occurred.
+Program Features
+Operations Provided:
+
+Addition: Adds two numbers.
+Subtraction: Subtracts the second number from the first.
+Division: Divides the first number by the second.
+Modulus: Finds the remainder of the division of the first number by the second.
+Multiplication: Multiplies two numbers.
+User-Friendly Interface:
+
+Displays a menu of operations.
+Prompts the user to input their choice and the numbers.
+Error Messages:
+
+Friendly error messages for invalid input or division by zero.
+How It Works
+When the program runs:
+
+The calculator class is instantiated, displaying the menu and a welcome message.
+The user selects an operation (1 to 5) and inputs two numbers.
+Based on the user’s choice (Z):
+
+The corresponding method from the calculator class is called.
+The result is computed and displayed.
+If an invalid input or error occurs:
+
+The except block catches the error and displays an appropriate message.
+The finally block ensures that a final message is always displayed, even if an error occurred.
+
+Code Example
+python
+Copy code
+class calculator:
+    def __init__(self):
+        print("Calculator is ready to perform operations")
+        print("1. Addition")
+        print("2. Subtraction")
+        print("3. Division")
+        print("4. Modulus")
+        print("5. Multiplication")
+
+    def add(self, a, b):
+        return a + b
+
+    def sub(self, a, b):
+        return a - b
+
+    def division(self, a, b):
+        return a / b
+
+    def modulus(self, a, b):
+        return a % b
+
+    def multiple(self, a, b):
+        return a * b
+
+
+try:
+    calc = calculator()
+    Z = int(input("Choose the choice: "))
+    if Z == 1:
+        a = int(input("Enter the first value: "))
+        b = int(input("Enter the second value: "))
+        print("Addition:", calc.add(a, b))
+    elif Z == 2:
+        a = int(input("Enter the first value: "))
+        b = int(input("Enter the second value: "))
+        print("Subtraction:", calc.sub(a, b))
+    elif Z == 3:
+        a = int(input("Enter the first value: "))
+        b = int(input("Enter the second value: "))
+        print("Division:", calc.division(a, b))
+    elif Z == 4:
+        a = int(input("Enter the first value: "))
+        b = int(input("Enter the second value: "))
+        print("Modulus:", calc.modulus(a, b))
+    elif Z == 5:
+        a = int(input("Enter the first value: "))
+        b = int(input("Enter the second value: "))
+        print("Multiplication:", calc.multiple(a, b))
+    else:
+        print("Invalid input")
+
+except ZeroDivisionError as e:
+    print(e)
+    print("You can't divide by zero.")
+except ValueError as e:
+    print(e)
+    print("Enter numbers only.")
+except Exception as e:
+    print(e)
+    print("Some error occurred.")
+else:
+    print("Operation performed successfully!")
+finally:
+    print("This always executes")
+print("Bye")
+Sample Run
+Input:
+markdown
+Copy code
+Calculator is ready to perform operations
+1. Addition
+2. Subtraction
+3. Division
+4. Modulus
+5. Multiplication
+Choose the choice: 1
+Enter the first value: 5
+Enter the second value: 10
+Output:
+makefile
+Copy code
+Addition: 15
+This always executes
+Bye
+Notes
+The code assumes the user inputs valid integers or floats for arithmetic operations. If invalid input is given, an error message will be displayed.
+The program gracefully handles division by zero and non-numeric inputs.
+Enhancements
+Add an option to repeat or quit the program after each calculation.
+Use a while loop to continuously prompt the user until they choose to exit.
+Extend functionality by including more operations (e.g., exponentiation, square root).
+
+
+
+
+
+     
